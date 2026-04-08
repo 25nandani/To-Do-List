@@ -2,42 +2,48 @@ const input = document.getElementById("input");
 const button = document.getElementById("task");
 const list = document.getElementById("list");
 
-
 button.addEventListener("click", () => {
-    if (input.value =='') {
-        alert("Enter Task!");
-    }
-    else {
-        let newTask = document.createElement("li");
-        newTask.innerText = input.value;
-        list.appendChild(newTask);
-        let btn = document.createElement("button");
-        btn.innerHTML = "\u2715";
-        btn.classList.add("delete-btn");
-        newTask.appendChild(btn);
-        btn.addEventListener("click", () => {
-            newTask.remove();
-        });
-        // let edit = document.createElement("span");
-        // edit.innerHTML = "\u270F";
-        // newTask.prepend(edit);
+  if (input.value === "") {
+    alert("Enter Task!");
+    return;
+  }
+  let newTask = document.createElement("li");
+  let taskText = document.createTextNode(input.value);
+  newTask.appendChild(taskText);
+  list.appendChild(newTask);
 
-        // edit.addEventListener("click", () => {
-        //     let newInput = input.value;
-        //     newTask.replaceChild(newInput);
-        // });
+  //delete functionality
+  let btn = document.createElement("button");
+  btn.innerHTML = "\u2715";
+  btn.classList.add("delete-btn");
+  newTask.appendChild(btn);
 
-        //complete Marked button
-        let complete = document.createElement("button");
-        complete.innerHTML = "\u2713";
-        complete.classList.add("complete-btn");
-        newTask.prepend(complete);
-        complete.addEventListener("click", () => {
-            newTask.classList.toggle("completed");
-        
-        });
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    newTask.remove();
+  });
 
-       console.log(input.value); 
-    }
-    
-})
+  //edit functionality
+  newTask.addEventListener("click", () => {
+    input.value = taskText.nodeValue;
+
+    input.onkeydown = (e) => {
+      if (e.key === "Enter") {
+        taskText.nodeValue = input.value; 
+        input.value = "";
+      }
+    };
+  });
+  //complete Marked functionality
+  let complete = document.createElement("button");
+  complete.innerHTML = "\u2713";
+  complete.classList.add("complete-btn");
+  newTask.prepend(complete);
+
+  complete.addEventListener("click", (e) => {
+    e.stopPropagation(); 
+    newTask.classList.toggle("completed");
+  });
+
+  input.value = ""; 
+});
