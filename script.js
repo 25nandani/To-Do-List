@@ -29,7 +29,7 @@ button.addEventListener("click", () => {
 
     input.onkeydown = (e) => {
       if (e.key === "Enter") {
-        taskText.nodeValue = input.value; 
+        taskText.nodeValue = input.value;
         input.value = "";
       }
     };
@@ -41,9 +41,26 @@ button.addEventListener("click", () => {
   newTask.prepend(complete);
 
   complete.addEventListener("click", (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     newTask.classList.toggle("completed");
   });
 
-  input.value = ""; 
+  input.value = "";
+});
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
+
+const mode = document.getElementById("mode");
+
+mode.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    mode.innerHTML = "🌙";
+  }
+  else {
+      mode.innerHTML = "☀️";
+  }
 });

@@ -11,6 +11,23 @@ body{
     justify-content: center;
     align-items: center;
 }
+.to-do{
+    display: flex;
+    justify-content: space-around;
+
+}
+#mode{
+    margin:1rem;
+    margin-top:0;
+    background-color:#fff;
+    color:#fff;
+    border:none;
+    padding:0.5rem;
+    border-radius: 20px;
+    margin-left: 3rem;
+    margin-right: 0;
+    font-weight: 800;
+}
 h1{
     color:#1a0958
 }
@@ -100,4 +117,7 @@ li span{
 .completed{
     text-decoration: line-through;
     color:  rgb(175, 173, 173);
+}
+.dark {
+  background: #0F172A;
 }
