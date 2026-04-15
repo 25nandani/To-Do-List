@@ -2,19 +2,46 @@ const input = document.getElementById("input");
 const button = document.getElementById("task");
 const list = document.getElementById("list");
 
+let editTask=null
 button.addEventListener("click", () => {
   if (input.value === "") {
     alert("Enter Task!");
     return;
   }
+  if (editTask != null) {
+    let editbutton=editTask.querySelector("span").textContent=input.value;
+    editTask = null;
+    input.value = "";
+    button.innerHTML = "Add";
+    return;
+  }
   let newTask = document.createElement("li");
-  let taskText = document.createTextNode(input.value);
-  newTask.appendChild(taskText);
+  let span = document.createElement("span");
+  span.textContent = input.value;
+  newTask.appendChild(span);
   list.appendChild(newTask);
+
+  //complete Marked functionality
+  let checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.classList.add("check-box");
+
+  newTask.prepend(checkbox);
+
+  checkbox.addEventListener("change", (e) => {
+    e.stopPropagation();
+
+    if (checkbox.checked) {
+      newTask.classList.add("completed");
+    } else {
+      newTask.classList.remove("completed");
+    }
+  });
+  input.value = "";
 
   //delete functionality
   let btn = document.createElement("button");
-  btn.innerHTML = "\u2715";
+  btn.innerHTML = "delete";
   btn.classList.add("delete-btn");
   newTask.appendChild(btn);
 
@@ -24,27 +51,15 @@ button.addEventListener("click", () => {
   });
 
   //edit functionality
-  newTask.addEventListener("click", () => {
-    input.value = taskText.nodeValue;
-
-    input.onkeydown = (e) => {
-      if (e.key === "Enter") {
-        taskText.nodeValue = input.value;
-        input.value = "";
-      }
-    };
+  let edit = document.createElement("button");
+  edit.innerHTML = "edit";
+  edit.classList.add("edit-btn");
+  newTask.appendChild(edit);
+  edit.addEventListener("click", () => {
+    input.value = span.textContent;
+    editTask = newTask;
+    button.innerHTML = "update";
   });
-  //complete Marked functionality
-  let complete = document.createElement("button");
-  complete.innerHTML = "\u2713";
-  complete.classList.add("complete-btn");
-  newTask.prepend(complete);
-
-  complete.addEventListener("click", (e) => {
-    e.stopPropagation();
-    newTask.classList.toggle("completed");
-  });
-
   input.value = "";
 });
 
