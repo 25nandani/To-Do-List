@@ -1,6 +1,7 @@
 const input = document.getElementById("input");
 const button = document.getElementById("task");
 const list = document.getElementById("list");
+const filter = document.getElementById("filter");
 
 let editTask=null
 button.addEventListener("click", () => {
@@ -9,7 +10,7 @@ button.addEventListener("click", () => {
     return;
   }
   if (editTask != null) {
-    let editbutton=editTask.querySelector("span").textContent=input.value;
+    editTask.querySelector("span").textContent=input.value;
     editTask = null;
     input.value = "";
     button.innerHTML = "Add";
@@ -76,6 +77,44 @@ mode.addEventListener("click", () => {
     mode.innerHTML = "🌙";
   }
   else {
-      mode.innerHTML = "☀️";
+      mode.innerHTML = "🌞";
   }
 });
+
+function filterTasks(type) {
+  let tasks = document.querySelectorAll("li");
+
+  tasks.forEach((task) => {
+    let isDone = task.classList.contains("completed");
+
+    if (type === "all") {
+      task.style.display = "flex";
+    } else if (type === "completed") {
+      if (isDone) {
+        task.style.display = "flex";
+      } else {
+        task.style.display = "none";
+      }
+    } else if (type === "pending") {
+      if (!isDone) {
+        task.style.display = "flex";
+      } else {
+        task.style.display = "none";
+      }
+    }
+  });
+}
+
+filter.addEventListener("click", (event) => {
+  if (event.target.tagName === "BUTTON") {
+    let text = event.target.innerText.toLowerCase();
+    let type;
+    if (text === "all") type = "all";
+    else if (text === "completed") type = "completed";
+    else if (text === "pending") type = "pending";
+
+    filterTasks(type);
+  }
+});
+
+

@@ -46,7 +46,7 @@ h1{
     align-items: center;
     justify-content: space-around;
     border:1px solid black;
-    background-color:#edeef0 ;
+    background-color:#dcdee3 ;
     border-radius: 30px;
     height:2rem;
     padding:1rem;
@@ -55,20 +55,21 @@ h1{
     border:none;
 }
 #input{
-    background-color:#edeef0;
+    background-color:#dcdee3;
     border: none;
     outline:none;
-
+    
 }
 
 #task{
-    background-color: rgb(19, 98, 254);
+    background-color: rgb(4, 42, 119);
     border-radius: 30px;
     color:#fff;
     width: 5rem;
     border: none;
     height:2rem;
     padding-right:0;
+    font-weight: bold;
 }
 /* #list{
     display: flex;
@@ -95,51 +96,41 @@ ul{
     padding-left:1.5rem;
     cursor: pointer;
 }
-.delete-btn{
-    border: none;
-    margin-left:10rem;
-    margin-right:0.5rem;
-    font-weight: bold;
-    color:#fff;
-    cursor: pointer;
-    padding:1px;
-    background-color: rgb(19, 98, 254);
-    border-radius: 30px;
-    color:#fff;
-    width: 4rem;
-    border: none;
-    height:2rem;
-    padding-right:0;
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 2px 5px;
 }
-.edit-btn{
-    border: none;
-    margin-left:0;
-    /* margin-right:2rem; */
-    font-weight: bold;
-    color:#fff;
-    cursor: pointer;
-    padding:1px;
-    background-color: rgb(19, 98, 254);
-    border-radius: 30px;
-    color:#fff;
-    width: 4rem;
-    border: none;
-    height:2rem;
-    /* padding-right:0;    */
+li span {
+  flex: 1;
+  color: rgb(2, 138, 11);
+  margin-left: 10px;
 }
-.update-btn{
-    
+.delete-btn,
+.edit-btn {
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  background-color:  rgb(4, 42, 119);
+  border-radius: 30px;
+  color: #fff;
+  width: 4rem;
+  height: 2rem;
+  margin-left: 10px; 
 }
+
 li span{
     color: rgb(2, 138, 11);
-    padding:1rem 2rem;
+    padding:1rem 1rem;
 }
 /* .complete-btn:hover {
     background-color: green;
     color: white;
     border-radius: 50%;
 }   */
-.completed{
+.completed span{
     text-decoration: line-through;
     color:  rgb(175, 173, 173);
 }
@@ -151,4 +142,19 @@ li span{
   height: 18px;
   margin-right: 10px;
   cursor: pointer;
+}
+#filter{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    padding: 1rem;
+    gap:2rem;
+}
+
+#filter button{
+    background-color: rgb(4, 42, 119);
+    border: none;
+    color:#fff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }
